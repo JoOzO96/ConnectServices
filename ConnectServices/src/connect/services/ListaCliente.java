@@ -15,6 +15,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import connect.Classes.Cliente;
 import connect.utils.FabricaConexao;
@@ -38,7 +39,6 @@ public class ListaCliente {
 			cliente.setNomeCliente(resultSet.getString("Nome Cliente"));
 			cliente.setCpf(resultSet.getString("CPF"));
 			if (resultSet.getDate("Data Nasc") != null){
-				System.out.println(resultSet.getDate("Data Nasc"));
 				cliente.setDataNasc(resultSet.getDate("Data Nasc"));
 			}
 			cliente.setEndereco(resultSet.getString("Endereco"));
@@ -98,8 +98,8 @@ public class ListaCliente {
 
 			linhas.add(cliente);
 		}
-
-		return new Gson().toJson(linhas);
+		Gson gson = new GsonBuilder().setDateFormat("dd/MM/yyyy").create();
+		return gson.toJson(linhas);
 
 	}
 
