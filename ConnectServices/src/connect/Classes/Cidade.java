@@ -1,5 +1,12 @@
 package connect.Classes;
 
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import connect.services.ListaCidade;
+
 public class Cidade {
     private Long codCidade;
     private String nomeCidade;
@@ -58,5 +65,16 @@ public class Cidade {
 		this.cep = cep;
 	}
     
+	public List<String> retornaLista(){
+		Field[] field = Cidade.class.getDeclaredFields();
+		List<Field> listCampos = new ArrayList<>(Arrays.asList(field));
+		List<String> listCamposS = new ArrayList<>();
+		for (int i = 0; listCampos.size() != i; i++) {
+			listCamposS.add(listCampos.get(i).getName().toString());
+			
+		}
+		
+		return listCamposS;
+	}
     
 }
