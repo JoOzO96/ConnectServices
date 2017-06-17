@@ -36,10 +36,10 @@ public class ListaCliente {
 		for (int i = 0; resultSet.next(); i++) {
 			Cliente cliente = new Cliente();
 			cliente.setCodigo(resultSet.getLong("código"));
-			cliente.setNomeCliente(resultSet.getString("Nome Cliente"));
+			cliente.setNomecliente(resultSet.getString("Nome Cliente"));
 			cliente.setCpf(resultSet.getString("CPF"));
 			if (resultSet.getDate("Data Nasc") != null){
-				cliente.setDataNasc(resultSet.getDate("Data Nasc"));
+				cliente.setDatanasc(resultSet.getDate("Data Nasc"));
 			}
 			cliente.setEndereco(resultSet.getString("Endereco"));
 			cliente.setPosicao(resultSet.getString("Posicao"));
@@ -54,46 +54,46 @@ public class ListaCliente {
 			cliente.setCgc(resultSet.getString("CGC"));
 			cliente.setIncest(resultSet.getString("Incest"));
 			cliente.setEnderecotrab(resultSet.getString("Enderecotrab"));
-			cliente.setCodProfissao(resultSet.getLong("Cód Profissao"));
-			cliente.setCodCidade(resultSet.getLong("Cod Cidade"));
+			cliente.setCodprofissao(resultSet.getLong("Cód Profissao"));
+			cliente.setCodcidade(resultSet.getLong("Cod Cidade"));
 			cliente.setResponsavel(resultSet.getString("Responsável"));
 			cliente.setFone(resultSet.getString("fone"));
 			cliente.setObs(resultSet.getString("OBS"));
 			cliente.setNume(resultSet.getString("Nume"));
 			cliente.setEmail(resultSet.getString("Email"));
-			cliente.setLimiteCredito(resultSet.getDouble("LimiteCredito"));
-			cliente.setPessoaAuto(resultSet.getString("PessoaAuto"));
-			cliente.setPessoaAuto1(resultSet.getString("PessoaAuto1"));
-			cliente.setLimiteCredito1(resultSet.getDouble("LimiteCredito1"));
-			cliente.setPessoaAuto2(resultSet.getString("PessoaAuto2"));
-			cliente.setLimiteCredito2(resultSet.getDouble("LimiteCredito2"));
-			cliente.setLimitePessoal(resultSet.getDouble("LimitePessoal"));
-			cliente.setTipoCliente(resultSet.getLong("TipoCliente"));
-			cliente.setCodVendedor(resultSet.getString("Cód Vendedor"));
+			cliente.setLimitecredito(resultSet.getDouble("LimiteCredito"));
+			cliente.setPessoaauto(resultSet.getString("PessoaAuto"));
+			cliente.setPessoaauto1(resultSet.getString("PessoaAuto1"));
+			cliente.setLimitecredito1(resultSet.getDouble("LimiteCredito1"));
+			cliente.setPessoaauto2(resultSet.getString("PessoaAuto2"));
+			cliente.setLimitecredito2(resultSet.getDouble("LimiteCredito2"));
+			cliente.setLimitepessoal(resultSet.getDouble("LimitePessoal"));
+			cliente.setTipocliente(resultSet.getLong("TipoCliente"));
+			cliente.setCodvendedor(resultSet.getString("Cód Vendedor"));
 			cliente.setSimples(resultSet.getBoolean("Simples"));
-			cliente.setFisJu(resultSet.getString("FisJu"));
+			cliente.setFisju(resultSet.getString("FisJu"));
 			cliente.setConjuge(resultSet.getString("Conjugê"));
-			cliente.setFreteCli(resultSet.getString("FreteCli"));
+			cliente.setFretecli(resultSet.getString("FreteCli"));
 			cliente.setAntecipacao(resultSet.getLong("Antecipacao"));
 			cliente.setEtiquetas(resultSet.getBoolean("Etiquetas"));
 			cliente.setSistema(resultSet.getBoolean("Sistema"));
 			cliente.setVmanu(resultSet.getDouble("Vmanu"));
 			if (resultSet.getDate("DataCadastro") != null){
-				cliente.setDataCadastro(resultSet.getDate("DataCadastro"));
+				cliente.setDatacadastro(resultSet.getDate("DataCadastro"));
 			}
 			if (resultSet.getDate("DataAlteracao") != null){
-				cliente.setDataCadastro(resultSet.getDate("DataAlteracao"));
+				cliente.setDatacadastro(resultSet.getDate("DataAlteracao"));
 			}
 			cliente.setRecibo(resultSet.getBoolean("Recibo"));
-			cliente.setCodigoPgto(resultSet.getLong("CódigoPgto"));
-			cliente.setCodRepresentante(resultSet.getString("CodRepresentante"));
-			cliente.setLiberaLimite(resultSet.getBoolean("LiberaLimite"));
+			cliente.setCodigopgto(resultSet.getLong("CódigoPgto"));
+			cliente.setCodrepresentante(resultSet.getString("CodRepresentante"));
+			cliente.setLiberalimite(resultSet.getBoolean("LiberaLimite"));
 			cliente.setFantasia(resultSet.getString("Fantasia"));
-			cliente.setContatoCobranca(resultSet.getString("ContatoCobranca"));
+			cliente.setContatocobranca(resultSet.getString("ContatoCobranca"));
 			cliente.setInativo(resultSet.getBoolean("Inativo"));
-			cliente.setClienteTipo(resultSet.getLong("ClienteTipo"));
-			cliente.setDiaCobranca(resultSet.getLong("DiaCobranca"));
-			cliente.setDiaParaVencimento(resultSet.getLong("DiaParaVencimento"));
+			cliente.setClientetipo(resultSet.getLong("ClienteTipo"));
+			cliente.setDiacobranca(resultSet.getLong("DiaCobranca"));
+			cliente.setDiaparavencimento(resultSet.getLong("DiaParaVencimento"));
 			cliente.setAntecipacao(resultSet.getLong("antecipacao"));
 
 			linhas.add(cliente);

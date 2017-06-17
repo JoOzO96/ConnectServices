@@ -31,13 +31,13 @@ public class ListaCidade {
 		List<Cidade> linhas = new ArrayList<>();
 		for (int i = 0; resultSet.next(); i++) {
 			Cidade cidade = new Cidade();
-			cidade.setCodCidade(resultSet.getLong("Cód Cidade"));
-			cidade.setNomeCidade(resultSet.getString("Nome Cidade"));
-			cidade.setUF(resultSet.getString("UF"));
-			cidade.setCodNacionalUf(resultSet.getString("CodNacionalUf"));
-			cidade.setCodNacionalCidade(resultSet.getString("CodNacionalCidade"));
+			cidade.setCodcidade(resultSet.getLong("Cód Cidade"));
+			cidade.setNomecidade(resultSet.getString("Nome Cidade"));
+			cidade.setUf(resultSet.getString("UF"));
+			cidade.setCodnacionaluf(resultSet.getString("CodNacionalUf"));
+			cidade.setCodnacionalcidade(resultSet.getString("CodNacionalCidade"));
 			cidade.setPais(resultSet.getString("Pais"));
-			cidade.setCodNacionalPais(resultSet.getString("CodNacionalPais"));
+			cidade.setCodnacionalpais(resultSet.getString("CodNacionalPais"));
 			cidade.setCep(resultSet.getString("CEP"));
 			linhas.add(cidade);
 		}

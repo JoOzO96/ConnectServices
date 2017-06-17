@@ -38,7 +38,7 @@ public class RecebeCidade {
 
 		for (int i = 0; i < listCidade.size(); i++) {
 			ResultSet resultSet = connection.createStatement()
-					.executeQuery("SELECT * FROM Cidade where [Cód Cidade] = " + listCidade.get(i).getCodCidade());
+					.executeQuery("SELECT * FROM Cidade where [Cód Cidade] = " + listCidade.get(i).getCodcidade());
 			if (resultSet.next()) {
 
 			} else {

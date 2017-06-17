@@ -5,9 +5,9 @@ import java.util.Date;
 public class Cliente {
 
 	private Long codigo;
-	private String nomeCliente;
+	private String nomecliente;
 	private String cpf;
-	private Date dataNasc;
+	private Date datanasc;
 	private String endereco;
 	private String posicao;
 	private String pai;
@@ -21,61 +21,66 @@ public class Cliente {
 	private String cgc;
 	private String incest;
 	private String enderecotrab;
-	private Long codProfissao;
-	private Long codCidade;
+	private Long codprofissao;
+	private Long codcidade;
 	private String responsavel;
 	private String fone;
 	private String obs;
 	private String nume;
 	private String email;
-	private String pessoaAuto;
-	private Double limiteCredito;
-	private String pessoaAuto1;
-	private Double limiteCredito1;
-	private String pessoaAuto2;
-	private Double limiteCredito2;
-	private Double limitePessoal;
-	private Long tipoCliente;
-	private String codVendedor;
+	private String pessoaauto;
+	private Double limitecredito;
+	private String pessoaauto1;
+	private Double limitecredito1;
+	private String pessoaauto2;
+	private Double limitecredito2;
+	private Double limitepessoal;
+	private Long tipocliente;
+	private String codvendedor;
 	private Boolean simples;
 	private String celular;
-	private String fisJu;
+	private String fisju;
 	private String conjuge;
-	private String freteCli;
+	private String fretecli;
 	private Long antecipacao;
 	private Boolean etiquetas;
 	private Boolean sistema;
 	private Double vmanu;
 	private Boolean recibo;
-	private Long codigoPgto;
-	private String codRepresentante;
-	private Date dataCadastro;
-	private Date dataAlteracao;
-	private Boolean liberaLimite;
+	private Long codigopgto;
+	private String codrepresentante;
+	private Date datacadastro;
+	private Date dataalteracao;
+	private Boolean liberalimite;
 	private String fantasia;
-	private String contatoCobranca;
+	private String contatocobranca;
 	private Boolean inativo;
-	private Long clienteTipo;
-	private Long diaCobranca;
-	private Long diaParaVencimento;
-	
+	private Long clientetipo;
+	private Long diacobranca;
+	private Long diaparavencimento;
 	public Long getCodigo() {
 		return codigo;
 	}
 	public void setCodigo(Long codigo) {
 		this.codigo = codigo;
 	}
-	public String getNomeCliente() {
-		return nomeCliente;
+	public String getNomecliente() {
+		return nomecliente;
 	}
-	public void setNomeCliente(String nomeCliente) {
-		this.nomeCliente = nomeCliente;
+	public void setNomecliente(String nomecliente) {
+		this.nomecliente = nomecliente;
 	}
 	public String getCpf() {
 		return cpf;
 	}
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
+	}
+	public Date getDatanasc() {
+		return datanasc;
+	}
+	public void setDatanasc(Date datanasc) {
+		this.datanasc = datanasc;
 	}
 	public String getEndereco() {
 		return endereco;
@@ -155,17 +160,17 @@ public class Cliente {
 	public void setEnderecotrab(String enderecotrab) {
 		this.enderecotrab = enderecotrab;
 	}
-	public Long getCodProfissao() {
-		return codProfissao;
+	public Long getCodprofissao() {
+		return codprofissao;
 	}
-	public void setCodProfissao(Long codProfissao) {
-		this.codProfissao = codProfissao;
+	public void setCodprofissao(Long codprofissao) {
+		this.codprofissao = codprofissao;
 	}
-	public Long getCodCidade() {
-		return codCidade;
+	public Long getCodcidade() {
+		return codcidade;
 	}
-	public void setCodCidade(Long codCidade) {
-		this.codCidade = codCidade;
+	public void setCodcidade(Long codcidade) {
+		this.codcidade = codcidade;
 	}
 	public String getResponsavel() {
 		return responsavel;
@@ -197,59 +202,59 @@ public class Cliente {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getPessoaAuto() {
-		return pessoaAuto;
+	public String getPessoaauto() {
+		return pessoaauto;
 	}
-	public void setPessoaAuto(String pessoaAuto) {
-		this.pessoaAuto = pessoaAuto;
+	public void setPessoaauto(String pessoaauto) {
+		this.pessoaauto = pessoaauto;
 	}
-	public Double getLimiteCredito() {
-		return limiteCredito;
+	public Double getLimitecredito() {
+		return limitecredito;
 	}
-	public void setLimiteCredito(Double limiteCredito) {
-		this.limiteCredito = limiteCredito;
+	public void setLimitecredito(Double limitecredito) {
+		this.limitecredito = limitecredito;
 	}
-	public String getPessoaAuto1() {
-		return pessoaAuto1;
+	public String getPessoaauto1() {
+		return pessoaauto1;
 	}
-	public void setPessoaAuto1(String pessoaAuto1) {
-		this.pessoaAuto1 = pessoaAuto1;
+	public void setPessoaauto1(String pessoaauto1) {
+		this.pessoaauto1 = pessoaauto1;
 	}
-	public Double getLimiteCredito1() {
-		return limiteCredito1;
+	public Double getLimitecredito1() {
+		return limitecredito1;
 	}
-	public void setLimiteCredito1(Double limiteCredito1) {
-		this.limiteCredito1 = limiteCredito1;
+	public void setLimitecredito1(Double limitecredito1) {
+		this.limitecredito1 = limitecredito1;
 	}
-	public String getPessoaAuto2() {
-		return pessoaAuto2;
+	public String getPessoaauto2() {
+		return pessoaauto2;
 	}
-	public void setPessoaAuto2(String pessoaAuto2) {
-		this.pessoaAuto2 = pessoaAuto2;
+	public void setPessoaauto2(String pessoaauto2) {
+		this.pessoaauto2 = pessoaauto2;
 	}
-	public Double getLimiteCredito2() {
-		return limiteCredito2;
+	public Double getLimitecredito2() {
+		return limitecredito2;
 	}
-	public void setLimiteCredito2(Double limiteCredito2) {
-		this.limiteCredito2 = limiteCredito2;
+	public void setLimitecredito2(Double limitecredito2) {
+		this.limitecredito2 = limitecredito2;
 	}
-	public Double getLimitePessoal() {
-		return limitePessoal;
+	public Double getLimitepessoal() {
+		return limitepessoal;
 	}
-	public void setLimitePessoal(Double limitePessoal) {
-		this.limitePessoal = limitePessoal;
+	public void setLimitepessoal(Double limitepessoal) {
+		this.limitepessoal = limitepessoal;
 	}
-	public Long getTipoCliente() {
-		return tipoCliente;
+	public Long getTipocliente() {
+		return tipocliente;
 	}
-	public void setTipoCliente(Long tipoCliente) {
-		this.tipoCliente = tipoCliente;
+	public void setTipocliente(Long tipocliente) {
+		this.tipocliente = tipocliente;
 	}
-	public String getCodVendedor() {
-		return codVendedor;
+	public String getCodvendedor() {
+		return codvendedor;
 	}
-	public void setCodVendedor(String codVendedor) {
-		this.codVendedor = codVendedor;
+	public void setCodvendedor(String codvendedor) {
+		this.codvendedor = codvendedor;
 	}
 	public Boolean getSimples() {
 		return simples;
@@ -263,11 +268,11 @@ public class Cliente {
 	public void setCelular(String celular) {
 		this.celular = celular;
 	}
-	public String getFisJu() {
-		return fisJu;
+	public String getFisju() {
+		return fisju;
 	}
-	public void setFisJu(String fisJu) {
-		this.fisJu = fisJu;
+	public void setFisju(String fisju) {
+		this.fisju = fisju;
 	}
 	public String getConjuge() {
 		return conjuge;
@@ -275,11 +280,11 @@ public class Cliente {
 	public void setConjuge(String conjuge) {
 		this.conjuge = conjuge;
 	}
-	public String getFreteCli() {
-		return freteCli;
+	public String getFretecli() {
+		return fretecli;
 	}
-	public void setFreteCli(String freteCli) {
-		this.freteCli = freteCli;
+	public void setFretecli(String fretecli) {
+		this.fretecli = fretecli;
 	}
 	public Long getAntecipacao() {
 		return antecipacao;
@@ -311,23 +316,35 @@ public class Cliente {
 	public void setRecibo(Boolean recibo) {
 		this.recibo = recibo;
 	}
-	public Long getCodigoPgto() {
-		return codigoPgto;
+	public Long getCodigopgto() {
+		return codigopgto;
 	}
-	public void setCodigoPgto(Long codigoPgto) {
-		this.codigoPgto = codigoPgto;
+	public void setCodigopgto(Long codigopgto) {
+		this.codigopgto = codigopgto;
 	}
-	public String getCodRepresentante() {
-		return codRepresentante;
+	public String getCodrepresentante() {
+		return codrepresentante;
 	}
-	public void setCodRepresentante(String codRepresentante) {
-		this.codRepresentante = codRepresentante;
+	public void setCodrepresentante(String codrepresentante) {
+		this.codrepresentante = codrepresentante;
 	}
-	public Boolean getLiberaLimite() {
-		return liberaLimite;
+	public Date getDatacadastro() {
+		return datacadastro;
 	}
-	public void setLiberaLimite(Boolean liberaLimite) {
-		this.liberaLimite = liberaLimite;
+	public void setDatacadastro(Date datacadastro) {
+		this.datacadastro = datacadastro;
+	}
+	public Date getDataalteracao() {
+		return dataalteracao;
+	}
+	public void setDataalteracao(Date dataalteracao) {
+		this.dataalteracao = dataalteracao;
+	}
+	public Boolean getLiberalimite() {
+		return liberalimite;
+	}
+	public void setLiberalimite(Boolean liberalimite) {
+		this.liberalimite = liberalimite;
 	}
 	public String getFantasia() {
 		return fantasia;
@@ -335,11 +352,11 @@ public class Cliente {
 	public void setFantasia(String fantasia) {
 		this.fantasia = fantasia;
 	}
-	public String getContatoCobranca() {
-		return contatoCobranca;
+	public String getContatocobranca() {
+		return contatocobranca;
 	}
-	public void setContatoCobranca(String contatoCobranca) {
-		this.contatoCobranca = contatoCobranca;
+	public void setContatocobranca(String contatocobranca) {
+		this.contatocobranca = contatocobranca;
 	}
 	public Boolean getInativo() {
 		return inativo;
@@ -347,42 +364,24 @@ public class Cliente {
 	public void setInativo(Boolean inativo) {
 		this.inativo = inativo;
 	}
-	public Long getClienteTipo() {
-		return clienteTipo;
+	public Long getClientetipo() {
+		return clientetipo;
 	}
-	public void setClienteTipo(Long clienteTipo) {
-		this.clienteTipo = clienteTipo;
+	public void setClientetipo(Long clientetipo) {
+		this.clientetipo = clientetipo;
 	}
-	public Long getDiaCobranca() {
-		return diaCobranca;
+	public Long getDiacobranca() {
+		return diacobranca;
 	}
-	public void setDiaCobranca(Long diaCobranca) {
-		this.diaCobranca = diaCobranca;
+	public void setDiacobranca(Long diacobranca) {
+		this.diacobranca = diacobranca;
 	}
-	public Long getDiaParaVencimento() {
-		return diaParaVencimento;
+	public Long getDiaparavencimento() {
+		return diaparavencimento;
 	}
-	public void setDiaParaVencimento(Long diaParaVencimento) {
-		this.diaParaVencimento = diaParaVencimento;
+	public void setDiaparavencimento(Long diaparavencimento) {
+		this.diaparavencimento = diaparavencimento;
 	}
-	public Date getDataNasc() {
-		return dataNasc;
-	}
-	public void setDataNasc(Date dataNasc) {
-		this.dataNasc = dataNasc;
-	}
-	public Date getDataCadastro() {
-		return dataCadastro;
-	}
-	public void setDataCadastro(Date dataCadastro) {
-		this.dataCadastro = dataCadastro;
-	}
-	public Date getDataAlteracao() {
-		return dataAlteracao;
-	}
-	public void setDataAlteracao(Date dataAlteracao) {
-		this.dataAlteracao = dataAlteracao;
-	}
-
+	
 	
 }

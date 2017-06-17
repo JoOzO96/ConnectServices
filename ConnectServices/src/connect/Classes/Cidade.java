@@ -7,43 +7,44 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Cidade {
-    private Long codCidade;
-    private String nomeCidade;
-    private String UF;
-    private String codNacionalUf;
-    private String codNacionalCidade;
+    private Long codcidade;
+    private String nomecidade;
+    private String uf;
+    private String codnacionaluf;
+    private String codnacionalcidade;
     private String pais;
-    private String codNacionalPais;
+    private String codnacionalpais;
     private String cep;
-	public Long getCodCidade() {
-		return codCidade;
+    
+    public Long getCodcidade() {
+		return codcidade;
 	}
-	public void setCodCidade(Long codCidade) {
-		this.codCidade = codCidade;
+	public void setCodcidade(Long codcidade) {
+		this.codcidade = codcidade;
 	}
-	public String getNomeCidade() {
-		return nomeCidade;
+	public String getNomecidade() {
+		return nomecidade;
 	}
-	public void setNomeCidade(String nomeCidade) {
-		this.nomeCidade = nomeCidade;
+	public void setNomecidade(String nomecidade) {
+		this.nomecidade = nomecidade;
 	}
-	public String getUF() {
-		return UF;
+	public String getUf() {
+		return uf;
 	}
-	public void setUF(String uF) {
-		UF = uF;
+	public void setUf(String uf) {
+		this.uf = uf;
 	}
-	public String getCodNacionalUf() {
-		return codNacionalUf;
+	public String getCodnacionaluf() {
+		return codnacionaluf;
 	}
-	public void setCodNacionalUf(String codNacionalUf) {
-		this.codNacionalUf = codNacionalUf;
+	public void setCodnacionaluf(String codnacionaluf) {
+		this.codnacionaluf = codnacionaluf;
 	}
-	public String getCodNacionalCidade() {
-		return codNacionalCidade;
+	public String getCodnacionalcidade() {
+		return codnacionalcidade;
 	}
-	public void setCodNacionalCidade(String codNacionalCidade) {
-		this.codNacionalCidade = codNacionalCidade;
+	public void setCodnacionalcidade(String codnacionalcidade) {
+		this.codnacionalcidade = codnacionalcidade;
 	}
 	public String getPais() {
 		return pais;
@@ -51,11 +52,11 @@ public class Cidade {
 	public void setPais(String pais) {
 		this.pais = pais;
 	}
-	public String getCodNacionalPais() {
-		return codNacionalPais;
+	public String getCodnacionalpais() {
+		return codnacionalpais;
 	}
-	public void setCodNacionalPais(String codNacionalPais) {
-		this.codNacionalPais = codNacionalPais;
+	public void setCodnacionalpais(String codnacionalpais) {
+		this.codnacionalpais = codnacionalpais;
 	}
 	public String getCep() {
 		return cep;
@@ -63,17 +64,11 @@ public class Cidade {
 	public void setCep(String cep) {
 		this.cep = cep;
 	}
-    
 	public List<Field> retornaLista(){
 		Field[] field = Cidade.class.getDeclaredFields();
 		List<Field> listCampos = new ArrayList<>(Arrays.asList(field));		
 		return listCampos;
 	}
-	@Override
-	public String toString() {
-		return "Cidade [codCidade=" + codCidade + ", nomeCidade=" + nomeCidade + ", UF=" + UF + ", codNacionalUf="
-				+ codNacionalUf + ", codNacionalCidade=" + codNacionalCidade + ", pais=" + pais + ", codNacionalPais="
-				+ codNacionalPais + ", cep=" + cep + "]";
-	}   
+
 	
 }
