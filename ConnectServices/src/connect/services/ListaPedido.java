@@ -1,11 +1,13 @@
 package connect.services;
 
+import java.lang.reflect.Field;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 
@@ -17,8 +19,10 @@ import javax.ws.rs.core.MediaType;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import connect.Classes.Cliente;
+import connect.Classes.Pedido;
+import connect.Classes.PedidoProduto;
 import connect.utils.FabricaConexao;
+import connect.utils.InsereField;
 
 @Path("listaPedido")
 public class ListaPedido {
@@ -31,72 +35,90 @@ public class ListaPedido {
 		SimpleDateFormat formata = new SimpleDateFormat("dd/MM/yyyy");
 		Calendar calendar = Calendar.getInstance();
 		List<String> linha = new ArrayList<>();
-		List<Cliente> linhas = new ArrayList<>();
+		List<Pedido> linhas = new ArrayList<>();
+		InsereField insereField = new InsereField();
+		List<Field> fieldClasse = new ArrayList<>(Arrays.asList(Pedido.class.getDeclaredFields()));
+		List<Field> fieldClassePedidoProduto = new ArrayList<>(Arrays.asList(PedidoProduto.class.getDeclaredFields()));
 		ResultSet resultSet = connection.createStatement().executeQuery("SELECT * FROM Pedido");
-		for (int i = 0; resultSet.next(); i++) {
-			Cliente cliente = new Cliente();
-			cliente.setCodigo(resultSet.getLong("código"));
-			cliente.setNomecliente(resultSet.getString("Nome Cliente"));
-			cliente.setCpf(resultSet.getString("CPF"));
-			if (resultSet.getDate("Data Nasc") != null){
-				cliente.setDatanasc(resultSet.getDate("Data Nasc"));
-			}
-			cliente.setEndereco(resultSet.getString("Endereco"));
-			cliente.setPosicao(resultSet.getString("Posicao"));
-			cliente.setPai(resultSet.getString("Pai"));
-			cliente.setMae(resultSet.getString("Mae"));
-			cliente.setBairro(resultSet.getString("Bairro"));
-			cliente.setCep(resultSet.getString("CEP"));
-			cliente.setIdentidade(resultSet.getString("Identidade"));
-			cliente.setTrabalho(resultSet.getString("Trabalho"));
-			cliente.setTelefone(resultSet.getString("Telefone"));
-			cliente.setFonetrab(resultSet.getString("Fonetrab"));
-			cliente.setCgc(resultSet.getString("CGC"));
-			cliente.setIncest(resultSet.getString("Incest"));
-			cliente.setEnderecotrab(resultSet.getString("Enderecotrab"));
-			cliente.setCodprofissao(resultSet.getLong("Cód Profissao"));
-			cliente.setCodcidade(resultSet.getLong("Cod Cidade"));
-			cliente.setResponsavel(resultSet.getString("Responsável"));
-			cliente.setFone(resultSet.getString("fone"));
-			cliente.setObs(resultSet.getString("OBS"));
-			cliente.setNume(resultSet.getString("Nume"));
-			cliente.setEmail(resultSet.getString("Email"));
-			cliente.setLimitecredito(resultSet.getDouble("LimiteCredito"));
-			cliente.setPessoaauto(resultSet.getString("PessoaAuto"));
-			cliente.setPessoaauto1(resultSet.getString("PessoaAuto1"));
-			cliente.setLimitecredito1(resultSet.getDouble("LimiteCredito1"));
-			cliente.setPessoaauto2(resultSet.getString("PessoaAuto2"));
-			cliente.setLimitecredito2(resultSet.getDouble("LimiteCredito2"));
-			cliente.setLimitepessoal(resultSet.getDouble("LimitePessoal"));
-			cliente.setTipocliente(resultSet.getLong("TipoCliente"));
-			cliente.setCodvendedor(resultSet.getString("Cód Vendedor"));
-			cliente.setSimples(resultSet.getBoolean("Simples"));
-			cliente.setFisju(resultSet.getString("FisJu"));
-			cliente.setConjuge(resultSet.getString("Conjugê"));
-			cliente.setFretecli(resultSet.getString("FreteCli"));
-			cliente.setAntecipacao(resultSet.getLong("Antecipacao"));
-			cliente.setEtiquetas(resultSet.getBoolean("Etiquetas"));
-			cliente.setSistema(resultSet.getBoolean("Sistema"));
-			cliente.setVmanu(resultSet.getDouble("Vmanu"));
-			if (resultSet.getDate("DataCadastro") != null){
-				cliente.setDatacadastro(resultSet.getDate("DataCadastro"));
-			}
-			if (resultSet.getDate("DataAlteracao") != null){
-				cliente.setDatacadastro(resultSet.getDate("DataAlteracao"));
-			}
-			cliente.setRecibo(resultSet.getBoolean("Recibo"));
-			cliente.setCodigopgto(resultSet.getLong("CódigoPgto"));
-			cliente.setCodrepresentante(resultSet.getString("CodRepresentante"));
-			cliente.setLiberalimite(resultSet.getBoolean("LiberaLimite"));
-			cliente.setFantasia(resultSet.getString("Fantasia"));
-			cliente.setContatocobranca(resultSet.getString("ContatoCobranca"));
-			cliente.setInativo(resultSet.getBoolean("Inativo"));
-			cliente.setClientetipo(resultSet.getLong("ClienteTipo"));
-			cliente.setDiacobranca(resultSet.getLong("DiaCobranca"));
-			cliente.setDiaparavencimento(resultSet.getLong("DiaParaVencimento"));
-			cliente.setAntecipacao(resultSet.getLong("antecipacao"));
 
-			linhas.add(cliente);
+		for (int i = 0; resultSet.next(); i++) {
+			Pedido pedido = new Pedido();
+			for (int j = 0; fieldClasse.size() != j; j++) {
+				String nomeCampo = fieldClasse.get(j).getName();
+				if (nomeCampo.equals("codpedido")) {
+					nomeCampo = "Cód Pedido";
+				} else if (nomeCampo.equals("codcliente")) {
+					nomeCampo = "Cód Cliente";
+				} else if (nomeCampo.equals("codvendedor")) {
+					nomeCampo = "Cód Vendedor";
+				} else if (nomeCampo.equals("formadepagamento")) {
+					nomeCampo = "Forma de Pagamento";
+				} else if (nomeCampo.equals("valortotal")) {
+					nomeCampo = "Valor Total";
+				} else if (nomeCampo.equals("codbanco")) {
+					nomeCampo = "Cód Banco";
+				} else if (nomeCampo.equals("simnao")) {
+					nomeCampo = "Sim/Não";
+				} else if (nomeCampo.equals("codinstituicao")) {
+					nomeCampo = "Cód Instituição";
+				}
+				Object pedidoRetorno = null;
+				if (nomeCampo.toLowerCase().contains("data")) {
+					if (resultSet.getDate(nomeCampo) != null) {
+						pedidoRetorno = insereField.insereField(fieldClasse.get(j), pedido,
+								resultSet.getDate(nomeCampo));
+						pedido = (Pedido) pedidoRetorno;
+					}
+				} else {
+					if (nomeCampo.equals("itensPedido")) {
+
+					} else if (resultSet.getString(nomeCampo) != null) {
+						pedidoRetorno = insereField.insereField(fieldClasse.get(j), pedido,
+								resultSet.getString(nomeCampo));
+						pedido = (Pedido) pedidoRetorno;
+					}
+				}
+			}
+			List<PedidoProduto> listpedidoProduto = new ArrayList<>();
+
+			ResultSet resultSetPedidoProduto = connection.createStatement()
+					.executeQuery("SELECT * FROM [Pedido Produto] where Pedido = " + pedido.getPedido().toString());
+			for (int k = 0; resultSetPedidoProduto.next(); k++) {
+				PedidoProduto pedidoProduto = new PedidoProduto();
+				for (int h = 0; fieldClassePedidoProduto.size() != h; h++) {
+					String nomeCampoPedidoProduto = fieldClassePedidoProduto.get(h).getName();
+					//
+					if (nomeCampoPedidoProduto.equals("codproduto")) {
+						nomeCampoPedidoProduto = "Cód Produto";
+					} else if (nomeCampoPedidoProduto.equals("codpedido")) {
+						nomeCampoPedidoProduto = "Cód Pedido";
+					} else if (nomeCampoPedidoProduto.equals("valorunitario")) {
+						nomeCampoPedidoProduto = "Valor Unitário";
+					} else if (nomeCampoPedidoProduto.equals("valortotal")) {
+						nomeCampoPedidoProduto = "Valor Total";
+					} else if (nomeCampoPedidoProduto.equals("codmecanico")) {
+						nomeCampoPedidoProduto = "Cód Mecanico";
+					}
+					Object pedidoProdutoRetorno = null;
+					if (nomeCampoPedidoProduto.toLowerCase().contains("data")) {
+						if (resultSetPedidoProduto.getDate(nomeCampoPedidoProduto) != null) {
+							pedidoProdutoRetorno = insereField.insereField(fieldClassePedidoProduto.get(h),
+									pedidoProduto, resultSetPedidoProduto.getDate(nomeCampoPedidoProduto));
+							pedidoProduto = (PedidoProduto) pedidoProdutoRetorno;
+						}
+					} else {
+						if (resultSetPedidoProduto.getString(nomeCampoPedidoProduto) != null) {
+							pedidoProdutoRetorno = insereField.insereField(fieldClassePedidoProduto.get(h),
+									pedidoProduto, resultSetPedidoProduto.getString(nomeCampoPedidoProduto));
+							pedidoProduto = (PedidoProduto) pedidoProdutoRetorno;
+						}
+					}
+				}
+				listpedidoProduto.add(pedidoProduto);
+			}
+			pedido.setItensPedido(listpedidoProduto);
+
+			linhas.add(pedido);
 		}
 		Gson gson = new GsonBuilder().setDateFormat("dd/MM/yyyy").create();
 		return gson.toJson(linhas);
