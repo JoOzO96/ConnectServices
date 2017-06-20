@@ -5,6 +5,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 public class InsereField {
@@ -64,6 +65,11 @@ public class InsereField {
 					Method method = objetoInstanciado.getClass().getMethod("set" + primeiro.toUpperCase() + nomeCampo,
 							cArg);
 					objetoInstanciado = method.invoke(objetoInstanciado, Long.parseLong(recebido.toString()));
+				} else if (field.getType().getSimpleName().toUpperCase().equals("DATE")) {
+					cArg[0] = Date.class;
+					Method method = objetoInstanciado.getClass().getMethod("set" + primeiro.toUpperCase() + nomeCampo,
+							cArg);
+					objetoInstanciado = method.invoke(objetoInstanciado, recebido);
 				} else if (field.getType().getSimpleName().toUpperCase().equals("DOUBLE")) {
 					cArg[0] = Double.class;
 					Method method = objetoInstanciado.getClass().getMethod("set" + primeiro.toUpperCase() + nomeCampo,
