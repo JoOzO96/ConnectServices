@@ -30,7 +30,7 @@ public class ListaPedidoProduto {
 		ResultSet resultSet = connection.createStatement().executeQuery("SELECT * FROM [Pedido Produto]");
 		for (int i = 0; resultSet.next(); i++) {
 			PedidoProduto pedidoProduto = new PedidoProduto();
-			pedidoProduto.setPedidoProduto(resultSet.getString(1));
+//			pedidoProduto.setPedidoProduto(resultSet.getString(1));
 			linhas.add(pedidoProduto);
 		}
 		
