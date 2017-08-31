@@ -18,13 +18,12 @@ import javax.ws.rs.core.MediaType;
 import com.google.gson.Gson;
 
 import connect.Classes.Cidade;
-import connect.Classes.ControleCodigo;
 import connect.utils.FabricaConexao;
 import connect.utils.InsereDados;
 import connect.utils.InsereField;
 
-@Path("recebeCidade")
-public class RecebeCidade {
+@Path("recebeCliente")
+public class RecebeCliente {
 
 	@POST
 	@Consumes(MediaType.TEXT_PLAIN)
@@ -33,16 +32,13 @@ public class RecebeCidade {
 		Gson gson = new Gson();
 		InsereField insereField = new InsereField();
 		Cidade cidades[] = gson.fromJson(cidade, Cidade[].class);
-		Cidade cidadeCadastrada = new Cidade();
-		List<ControleCodigo> listcontroleCodigo = new ArrayList<>();
-		
+
 		List<Cidade> listCidade = new ArrayList<>(Arrays.asList(cidades));
 		Connection connection = FabricaConexao.getConnection();
 
 		for (int i = 0; i < listCidade.size(); i++) {
-			ControleCodigo controleCodigo = new ControleCodigo();
 			ResultSet resultSet = connection.createStatement()
-					.executeQuery("SELECT * FROM Cidade where [Cód Cidade] = " + listCidade.get(i).getCodcidade());
+					.executeQuery("SELECT * FROM Cliente where [Cód Cidade] = " + listCidade.get(i).getCodcidade());
 			if (resultSet.next()) {
 
 			} else {
@@ -66,29 +62,11 @@ public class RecebeCidade {
 				String insert = insereDados.retornaInsert(campos, dados, "Cidade");
 				insert = insert.replaceAll("codcidade", "[Cód Cidade]");
 				insert = insert.replaceAll("nomecidade", "[Nome Cidade]");
-				//System.out.println(insert);
+				System.out.println(insert);
 				connection.createStatement().executeUpdate(insert);
-				
-				
-				
-				
-				resultSet = connection.createStatement()
-						.executeQuery("SELECT TOP 1 * FROM Cidade order by [Cód Cidade] desc");
-				if (resultSet.next()){
-					if (resultSet.getLong("Cód Cidade")!= cidade2.getCodcidade()){
-						controleCodigo.setCodigoAndroid(cidade2.getCodcidade());
-						controleCodigo.setCodigoBanco(resultSet.getLong("Cód Cidade"));
-						listcontroleCodigo.add(controleCodigo);
-					}
-				}
-				
 			}
 		}
-		if (listcontroleCodigo.size() > 0){
-			return gson.toJson(listcontroleCodigo);
-		}else{
-			return "";
-		}
+		return "SUCESSO";
 	}
 
 }
