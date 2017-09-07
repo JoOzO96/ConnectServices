@@ -28,7 +28,7 @@ public class ListaCliente {
 
 	@GET
 	@Produces(MediaType.TEXT_PLAIN)
-	public String retornaProduto() throws ClassNotFoundException, SQLException, ParseException {
+	public String retornaCliente() throws ClassNotFoundException, SQLException, ParseException {
 
 		Connection connection = FabricaConexao.getConnection();
 		SimpleDateFormat formata = new SimpleDateFormat("dd/MM/yyyy");

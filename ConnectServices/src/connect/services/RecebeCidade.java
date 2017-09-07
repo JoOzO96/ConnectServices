@@ -16,6 +16,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import connect.Classes.Cidade;
 import connect.Classes.ControleCodigo;
@@ -30,7 +31,7 @@ public class RecebeCidade {
 	@Consumes(MediaType.TEXT_PLAIN)
 	@Produces(MediaType.TEXT_PLAIN)
 	public String recebeCidade(String cidade) throws ClassNotFoundException, SQLException, ParseException {
-		Gson gson = new Gson();
+		Gson gson = new GsonBuilder().setDateFormat("dd/MM/yyyy").create();
 		InsereField insereField = new InsereField();
 		Cidade cidades[] = gson.fromJson(cidade, Cidade[].class);
 		Cidade cidadeCadastrada = new Cidade();
@@ -43,9 +44,7 @@ public class RecebeCidade {
 			ControleCodigo controleCodigo = new ControleCodigo();
 			ResultSet resultSet = connection.createStatement()
 					.executeQuery("SELECT * FROM Cidade where [Cód Cidade] = " + listCidade.get(i).getCodcidade());
-			if (resultSet.next()) {
-
-			} else {
+			resultSet.next();
 				Cidade cidade2 = new Cidade();
 				List<Field> fields = cidade2.retornaLista();
 
@@ -83,7 +82,7 @@ public class RecebeCidade {
 				}
 				
 			}
-		}
+		
 		if (listcontroleCodigo.size() > 0){
 			return gson.toJson(listcontroleCodigo);
 		}else{

@@ -16,8 +16,11 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import com.google.gson.Gson;
+import com.sun.jersey.api.client.Client;
 
 import connect.Classes.Cidade;
+import connect.Classes.Cliente;
+import connect.Classes.ControleCodigo;
 import connect.utils.FabricaConexao;
 import connect.utils.InsereDados;
 import connect.utils.InsereField;
@@ -28,45 +31,61 @@ public class RecebeCliente {
 	@POST
 	@Consumes(MediaType.TEXT_PLAIN)
 	@Produces(MediaType.TEXT_PLAIN)
-	public String recebeCidade(String cidade) throws ClassNotFoundException, SQLException, ParseException {
+	public String recebeCliente(String cliente) throws ClassNotFoundException, SQLException, ParseException {
 		Gson gson = new Gson();
 		InsereField insereField = new InsereField();
-		Cidade cidades[] = gson.fromJson(cidade, Cidade[].class);
-
-		List<Cidade> listCidade = new ArrayList<>(Arrays.asList(cidades));
+		Cliente clientes[] = gson.fromJson(cliente, Cliente[].class);
+		Cliente clienteCadastrado = new Cliente();
+		List<ControleCodigo> listcontroleCodigo = new ArrayList<>();
+		List<Cliente> listCliente = new ArrayList<>(Arrays.asList(clientes));
 		Connection connection = FabricaConexao.getConnection();
 
-		for (int i = 0; i < listCidade.size(); i++) {
+		for (int i = 0; i < listCliente.size(); i++) {
+			ControleCodigo controleCodigo = new ControleCodigo();
 			ResultSet resultSet = connection.createStatement()
-					.executeQuery("SELECT * FROM Cliente where [Cód Cidade] = " + listCidade.get(i).getCodcidade());
-			if (resultSet.next()) {
-
-			} else {
-				Cidade cidade2 = new Cidade();
-				List<Field> fields = cidade2.retornaLista();
+					.executeQuery("SELECT * FROM Cliente where [Código] = " + listCliente.get(i).getCodigo());
+			resultSet.next();
+				Cliente cliente1 = new Cliente();
+				List<Field> fields = new ArrayList<>(Arrays.asList(cliente1.getClass().getDeclaredFields()));
 
 				for (int j = 0; j < fields.size(); j++) {
 
-					Object retorno = insereField.retornaField(fields.get(j), listCidade.get(i));
+					Object retorno = insereField.retornaField(fields.get(j), listCliente.get(i));
 
-					Object teste = insereField.insereField(fields.get(j), cidade2, retorno);
-					cidade2 = (Cidade) teste;
+					Object teste = insereField.insereField(fields.get(j), cliente1, retorno);
+					cliente1 = (Cliente) teste;
 				}
 				
 				// GERA UM ARRAY CONTENDO O NOME DO CAMPO E OUTRO ARRAY COM O VALOR NA MESMA POSIÇÃO
 				
-				List<Field> campos = insereField.retornaArrayCampos(cidade2);
-				List<String> dados = insereField.retornaArrayDados(cidade2, campos);
+				List<Field> campos = insereField.retornaArrayCampos(cliente1);
+				List<String> dados = insereField.retornaArrayDados(cliente1, campos);
 
 				InsereDados insereDados = new InsereDados();
-				String insert = insereDados.retornaInsert(campos, dados, "Cidade");
-				insert = insert.replaceAll("codcidade", "[Cód Cidade]");
-				insert = insert.replaceAll("nomecidade", "[Nome Cidade]");
+				String insert = insereDados.retornaInsert(campos, dados, "Cliente");
+				insert = insert.replaceAll("codigo", "[Código]");
+				insert = insert.replaceAll("nomecliente", "[nome cliente]");
+				insert = insert.replaceAll("codprofissao", "[Cód Profissao]");
+				insert = insert.replaceAll("codcidade", "[Cod Cidade]");
 				System.out.println(insert);
 				connection.createStatement().executeUpdate(insert);
+				
+				resultSet = connection.createStatement()
+						.executeQuery("SELECT TOP 1 * FROM Cliente order by [Código] desc");
+				if (resultSet.next()){
+					if (resultSet.getLong("Código")!= cliente1.getCodigo()){
+						controleCodigo.setCodigoAndroid(cliente1.getCodigo());
+						controleCodigo.setCodigoBanco(resultSet.getLong("Código"));
+						listcontroleCodigo.add(controleCodigo);
+					}
+				}
 			}
+		
+		if (listcontroleCodigo.size() > 0){
+			return gson.toJson(listcontroleCodigo);
+		}else{
+			return "";
 		}
-		return "SUCESSO";
 	}
 
 }
