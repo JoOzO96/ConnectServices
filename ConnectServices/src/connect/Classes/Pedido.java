@@ -39,7 +39,7 @@ public class Pedido {
     private String nfc;
     private Long codcaixa;
     private String servicosolicitado;
-    private List<PedidoProduto> itensPedido;
+    //private List<PedidoProduto> itensPedido;
     
 	public Long getPedido() {
 		return pedido;
@@ -245,12 +245,12 @@ public class Pedido {
 	public void setServicosolicitado(String servicosolicitado) {
 		this.servicosolicitado = servicosolicitado;
 	}
-	public List<PedidoProduto> getItensPedido() {
-		return itensPedido;
-	}
-	public void setItensPedido(List<PedidoProduto> itensPedido) {
-		this.itensPedido = itensPedido;
-	}
+//	public List<PedidoProduto> getItensPedido() {
+//		return itensPedido;
+//	}
+//	public void setItensPedido(List<PedidoProduto> itensPedido) {
+//		this.itensPedido = itensPedido;
+//	}
 	
 	
       

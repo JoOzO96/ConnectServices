@@ -79,44 +79,44 @@ public class ListaPedido {
 					}
 				}
 			}
-			List<PedidoProduto> listpedidoProduto = new ArrayList<>();
-
-			ResultSet resultSetPedidoProduto = connection.createStatement()
-					.executeQuery("SELECT * FROM [Pedido Produto] where Pedido = " + pedido.getPedido().toString());
-			for (int k = 0; resultSetPedidoProduto.next(); k++) {
-				PedidoProduto pedidoProduto = new PedidoProduto();
-				for (int h = 0; fieldClassePedidoProduto.size() != h; h++) {
-					String nomeCampoPedidoProduto = fieldClassePedidoProduto.get(h).getName();
-					//
-					if (nomeCampoPedidoProduto.equals("codproduto")) {
-						nomeCampoPedidoProduto = "Cód Produto";
-					} else if (nomeCampoPedidoProduto.equals("codpedido")) {
-						nomeCampoPedidoProduto = "Cód Pedido";
-					} else if (nomeCampoPedidoProduto.equals("valorunitario")) {
-						nomeCampoPedidoProduto = "Valor Unitário";
-					} else if (nomeCampoPedidoProduto.equals("valortotal")) {
-						nomeCampoPedidoProduto = "Valor Total";
-					} else if (nomeCampoPedidoProduto.equals("codmecanico")) {
-						nomeCampoPedidoProduto = "Cód Mecanico";
-					}
-					Object pedidoProdutoRetorno = null;
-					if (nomeCampoPedidoProduto.toLowerCase().contains("data")) {
-						if (resultSetPedidoProduto.getDate(nomeCampoPedidoProduto) != null) {
-							pedidoProdutoRetorno = insereField.insereField(fieldClassePedidoProduto.get(h),
-									pedidoProduto, resultSetPedidoProduto.getDate(nomeCampoPedidoProduto));
-							pedidoProduto = (PedidoProduto) pedidoProdutoRetorno;
-						}
-					} else {
-						if (resultSetPedidoProduto.getString(nomeCampoPedidoProduto) != null) {
-							pedidoProdutoRetorno = insereField.insereField(fieldClassePedidoProduto.get(h),
-									pedidoProduto, resultSetPedidoProduto.getString(nomeCampoPedidoProduto));
-							pedidoProduto = (PedidoProduto) pedidoProdutoRetorno;
-						}
-					}
-				}
-				listpedidoProduto.add(pedidoProduto);
-			}
-			pedido.setItensPedido(listpedidoProduto);
+//			List<PedidoProduto> listpedidoProduto = new ArrayList<>();
+//
+//			ResultSet resultSetPedidoProduto = connection.createStatement()
+//					.executeQuery("SELECT * FROM [Pedido Produto] where Pedido = " + pedido.getPedido().toString());
+//			for (int k = 0; resultSetPedidoProduto.next(); k++) {
+//				PedidoProduto pedidoProduto = new PedidoProduto();
+//				for (int h = 0; fieldClassePedidoProduto.size() != h; h++) {
+//					String nomeCampoPedidoProduto = fieldClassePedidoProduto.get(h).getName();
+//					//
+//					if (nomeCampoPedidoProduto.equals("codproduto")) {
+//						nomeCampoPedidoProduto = "Cód Produto";
+//					} else if (nomeCampoPedidoProduto.equals("codpedido")) {
+//						nomeCampoPedidoProduto = "Cód Pedido";
+//					} else if (nomeCampoPedidoProduto.equals("valorunitario")) {
+//						nomeCampoPedidoProduto = "Valor Unitário";
+//					} else if (nomeCampoPedidoProduto.equals("valortotal")) {
+//						nomeCampoPedidoProduto = "Valor Total";
+//					} else if (nomeCampoPedidoProduto.equals("codmecanico")) {
+//						nomeCampoPedidoProduto = "Cód Mecanico";
+//					}
+//					Object pedidoProdutoRetorno = null;
+//					if (nomeCampoPedidoProduto.toLowerCase().contains("data")) {
+//						if (resultSetPedidoProduto.getDate(nomeCampoPedidoProduto) != null) {
+//							pedidoProdutoRetorno = insereField.insereField(fieldClassePedidoProduto.get(h),
+//									pedidoProduto, resultSetPedidoProduto.getDate(nomeCampoPedidoProduto));
+//							pedidoProduto = (PedidoProduto) pedidoProdutoRetorno;
+//						}
+//					} else {
+//						if (resultSetPedidoProduto.getString(nomeCampoPedidoProduto) != null) {
+//							pedidoProdutoRetorno = insereField.insereField(fieldClassePedidoProduto.get(h),
+//									pedidoProduto, resultSetPedidoProduto.getString(nomeCampoPedidoProduto));
+//							pedidoProduto = (PedidoProduto) pedidoProdutoRetorno;
+//						}
+//					}
+//				}
+//				listpedidoProduto.add(pedidoProduto);
+//			}
+			//pedido.setItensPedido(listpedidoProduto);
 
 			linhas.add(pedido);
 		}

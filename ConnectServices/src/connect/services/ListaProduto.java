@@ -96,12 +96,18 @@ public class ListaProduto {
 						produto = (Produto) produtoRetorno;
 					}
 				} else {
-					if (nomeCampo.equals("itensPedido")) {
+					
+					try {
+						if (nomeCampo.equals("itensPedido")) {
 
-					} else if (resultSet.getString(nomeCampo) != null) {
-						produtoRetorno = insereField.insereField(fieldClasse.get(j), produto,
-								resultSet.getString(nomeCampo));
-						produto = (Produto) produtoRetorno;
+						} else if (resultSet.getString(nomeCampo) != null) {
+							produtoRetorno = insereField.insereField(fieldClasse.get(j), produto,
+									resultSet.getString(nomeCampo));
+							produto = (Produto) produtoRetorno;
+						}
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
 					}
 				}
 				
