@@ -2,11 +2,15 @@ package connect.services;
 
 import java.lang.reflect.Field;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
@@ -19,8 +23,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.sun.jersey.api.client.Client;
 
-import connect.Classes.Cidade;
-import connect.Classes.Cliente;
+
 import connect.Classes.ControleCodigo;
 import connect.Classes.Pedido;
 import connect.utils.FabricaConexao;
@@ -59,7 +62,7 @@ public class RecebePedido {
 					Object teste = insereField.insereField(fields.get(j), pedido1, retorno);
 					pedido1 = (Pedido) teste;
 				}
-				
+				pedido1.setData(new Date());
 				// GERA UM ARRAY CONTENDO O NOME DO CAMPO E OUTRO ARRAY COM O VALOR NA MESMA POSIÇÃO
 				
 				List<Field> campos = insereField.retornaArrayCampos(pedido1);
@@ -71,20 +74,32 @@ public class RecebePedido {
 				insert = insert.replaceAll("codvendedor", "[Cód Vendedor]");
 				insert = insert.replaceAll("valortotal", "[Valor Total]");
 				insert = insert.replaceAll("simnao", "[Sim/Não]");
-				System.out.println(insert);
+				insert = insert.replace("codpedido", "[Cód Pedido]");
+				insert = insert.replace("formadepagamento", "[Forma de Pagamento]");
+				insert = insert.replace("codbanco", "[Cód Banco]");
+				insert = insert.replace("codhistorico", "[Cód Histórico]");
+				insert = insert.replace("codproduto", "[Cod Produto]");
+				insert = insert.replace("codinstituicao", "[Cód Instituição]");
+				//System.out.println(insert);
+				
+				
+				
+//				PreparedStatement statement = connection.prepareStatement(insert);
+//				SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+//				Timestamp ddMMyyyy=new Timestamp(dateFormat.parse("14/11/2017").getTime());
+//				statement.setTimestamp(1, ddMMyyyy);
+//				System.out.println(ddMMyyyy);
+//				statement.executeUpdate(insert);
 				connection.createStatement().executeUpdate(insert);
 				
 				resultSet = connection.createStatement()
-						.executeQuery("SELECT TOP 1 * FROM Cliente order by [Código] desc");
+						.executeQuery("SELECT TOP 1 * FROM Pedido order by [Pedido] desc");
 				if (resultSet.next()){
-					if (resultSet.getLong("Código")!= pedido1.getPedido()){
 						controleCodigo.setCodigoAndroid(pedido1.getPedido());
 						controleCodigo.setCodigoBanco(resultSet.getLong("Pedido"));
 						listcontroleCodigo.add(controleCodigo);
-					}
-				}
 			}
-		
+		}
 		if (listcontroleCodigo.size() > 0){
 			return gson.toJson(listcontroleCodigo);
 		}else{

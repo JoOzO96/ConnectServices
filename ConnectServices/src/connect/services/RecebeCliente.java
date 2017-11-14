@@ -67,17 +67,19 @@ public class RecebeCliente {
 				insert = insert.replaceAll("nomecliente", "[nome cliente]");
 				insert = insert.replaceAll("codprofissao", "[Cód Profissao]");
 				insert = insert.replaceAll("codcidade", "[Cod Cidade]");
-				System.out.println(insert);
+				insert = insert.replaceAll("codvendedor", "[Cód Vendedor]");
+				insert = insert.replaceAll("responsavel", "[Responsável]");
+				insert = insert.replaceAll("conjuge", "[Conjugê]");
+				insert = insert.replace("[Código]pgto", "[CódigoPgto]");
+//				System.out.println(insert);
 				connection.createStatement().executeUpdate(insert);
 				
 				resultSet = connection.createStatement()
 						.executeQuery("SELECT TOP 1 * FROM Cliente order by [Código] desc");
 				if (resultSet.next()){
-					if (resultSet.getLong("Código")!= cliente1.getCodigo()){
 						controleCodigo.setCodigoAndroid(cliente1.getCodigo());
 						controleCodigo.setCodigoBanco(resultSet.getLong("Código"));
 						listcontroleCodigo.add(controleCodigo);
-					}
 				}
 			}
 		
