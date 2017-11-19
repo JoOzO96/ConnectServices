@@ -16,7 +16,6 @@ import javax.ws.rs.core.MediaType;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import connect.Classes.PedidoProduto;
 import connect.Classes.Produto;
 import connect.utils.FabricaConexao;
 import connect.utils.InsereField;
@@ -27,7 +26,7 @@ public class ListaProduto {
 	@GET
 	@Produces(MediaType.TEXT_PLAIN)
 	public String retornaProduto() throws ClassNotFoundException, SQLException {
-	
+
 		Connection connection = FabricaConexao.getConnection();
 		List<String> linha = new ArrayList<>();
 		List<Produto> linhas = new ArrayList<>();
@@ -87,7 +86,7 @@ public class ListaProduto {
 				} else if (nomeCampo.equals("maquina")) {
 					nomeCampo = "máquina";
 				}
-				
+
 				Object produtoRetorno = null;
 				if (nomeCampo.toLowerCase().contains("data")) {
 					if (resultSet.getDate(nomeCampo) != null) {
@@ -96,7 +95,7 @@ public class ListaProduto {
 						produto = (Produto) produtoRetorno;
 					}
 				} else {
-					
+
 					try {
 						if (nomeCampo.equals("itensPedido")) {
 
@@ -110,12 +109,12 @@ public class ListaProduto {
 						e.printStackTrace();
 					}
 				}
-				
+
 			}
 			linhas.add(produto);
 		}
 		Gson gson = new GsonBuilder().setDateFormat("dd/MM/yyyy").create();
 		return gson.toJson(linhas);
 	}
-	
+
 }

@@ -16,9 +16,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import com.google.gson.Gson;
-import com.sun.jersey.api.client.Client;
 
-import connect.Classes.Cidade;
 import connect.Classes.Cliente;
 import connect.Classes.ControleCodigo;
 import connect.utils.FabricaConexao;

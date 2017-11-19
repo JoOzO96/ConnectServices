@@ -48,7 +48,7 @@ public class ListaPedidoProduto {
 				} else if (nomeCampo.equals("codmecanico")) {
 					nomeCampo = "Cód Mecanico";
 				}
-				
+
 				Object pedidoProdutoRetorno = null;
 				if (nomeCampo.toLowerCase().contains("data")) {
 					if (resultSet.getDate(nomeCampo) != null) {
@@ -65,7 +65,7 @@ public class ListaPedidoProduto {
 						pedidoProduto = (PedidoProduto) pedidoProdutoRetorno;
 					}
 				}
-				
+
 			}
 			linhas.add(pedidoProduto);
 		}

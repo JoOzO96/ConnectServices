@@ -5,10 +5,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Calendar;
 import java.util.List;
 
 import javax.ws.rs.GET;
@@ -19,7 +17,6 @@ import javax.ws.rs.core.MediaType;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import connect.Classes.Cliente;
 import connect.Classes.Vendedor;
 import connect.utils.FabricaConexao;
 import connect.utils.InsereField;

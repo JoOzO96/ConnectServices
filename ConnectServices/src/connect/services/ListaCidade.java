@@ -33,33 +33,33 @@ public class ListaCidade {
 		List<Field> fieldClasse = new ArrayList<>(Arrays.asList(Cidade.class.getDeclaredFields()));
 		for (int i = 0; resultSet.next(); i++) {
 			Cidade cidade = new Cidade();
-			for (int j = 0;fieldClasse.size() != j;j++){
-					String nomeCampo = fieldClasse.get(j).getName();
-					if (nomeCampo.equals("codcidade")){
-						nomeCampo = "Cód Cidade";
-					}else if (nomeCampo.equals("nomecidade")){
-						nomeCampo = "Nome Cidade";
-					}
-					Object cidadeRetorno = insereField.insereField(fieldClasse.get(j), cidade, resultSet.getString(nomeCampo));
-					cidade = (Cidade) cidadeRetorno;
+			for (int j = 0; fieldClasse.size() != j; j++) {
+				String nomeCampo = fieldClasse.get(j).getName();
+				if (nomeCampo.equals("codcidade")) {
+					nomeCampo = "Cód Cidade";
+				} else if (nomeCampo.equals("nomecidade")) {
+					nomeCampo = "Nome Cidade";
+				}
+				Object cidadeRetorno = insereField.insereField(fieldClasse.get(j), cidade,
+						resultSet.getString(nomeCampo));
+				cidade = (Cidade) cidadeRetorno;
 			}
 			linhas.add(cidade);
 		}
-//		for (int i = 0; resultSet.next(); i++) {
-//			Cidade cidade = new Cidade();
-//			cidade.setCodcidade(resultSet.getLong("Cód Cidade"));
-//			cidade.setNomecidade(resultSet.getString("Nome Cidade"));
-//			cidade.setUf(resultSet.getString("UF"));
-//			cidade.setCodnacionaluf(resultSet.getString("CodNacionalUf"));
-//			cidade.setCodnacionalcidade(resultSet.getString("CodNacionalCidade"));
-//			cidade.setPais(resultSet.getString("Pais"));
-//			cidade.setCodnacionalpais(resultSet.getString("CodNacionalPais"));
-//			cidade.setCep(resultSet.getString("CEP"));
-//			linhas.add(cidade);
-//		}
+		// for (int i = 0; resultSet.next(); i++) {
+		// Cidade cidade = new Cidade();
+		// cidade.setCodcidade(resultSet.getLong("Cód Cidade"));
+		// cidade.setNomecidade(resultSet.getString("Nome Cidade"));
+		// cidade.setUf(resultSet.getString("UF"));
+		// cidade.setCodnacionaluf(resultSet.getString("CodNacionalUf"));
+		// cidade.setCodnacionalcidade(resultSet.getString("CodNacionalCidade"));
+		// cidade.setPais(resultSet.getString("Pais"));
+		// cidade.setCodnacionalpais(resultSet.getString("CodNacionalPais"));
+		// cidade.setCep(resultSet.getString("CEP"));
+		// linhas.add(cidade);
+		// }
 		return new Gson().toJson(linhas);
 
 	}
-	
-	
+
 }

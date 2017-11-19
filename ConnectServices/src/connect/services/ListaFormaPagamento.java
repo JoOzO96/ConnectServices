@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import javax.swing.text.html.HTMLDocument.HTMLReader.FormAction;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -17,10 +16,8 @@ import javax.ws.rs.core.MediaType;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.sun.jersey.api.representation.Form;
 
 import connect.Classes.FormaPagamento;
-import connect.Classes.Vendedor;
 import connect.utils.FabricaConexao;
 import connect.utils.InsereField;
 
