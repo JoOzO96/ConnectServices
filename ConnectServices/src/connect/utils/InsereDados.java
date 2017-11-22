@@ -68,5 +68,63 @@ public class InsereDados {
 		insert = insert + "(" + camposTabela + ") VALUES (" + dadosTabela + ");";
 		return insert;
 	}
+	
+	public String retornaUpdate(List<Field> campos, List<String> dados, String tabela, String id, String valor) {
+		String insert = "";
+		String camposTabela = "";
+		String dadosTabela = "";
+		insert = "UPDATE " + tabela + " SET ";
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.US);
+		insert = insert + tabela;
+		for (int i = 0; i < campos.size(); i++) {
+			camposTabela += campos.get(i).getName();
+
+			if (i != campos.size() - 1) {
+				camposTabela += "";
+				if (campos.get(i).getType().toString().replaceAll("class java.util.", "").toUpperCase().equals("DATE")) {
+
+					// String stringData = "" + dados.get(i).substring(8, 10) + "/" +
+					// dados.get(i).substring(4, 7) + "/" + dados.get(i).substring(25, 29);
+
+					String dia;
+					try {
+						dia = new SimpleDateFormat("yyyy-MM-dd")
+								.format(new SimpleDateFormat("EEE MMM d HH:mm:ss zzz yyyy", Locale.US).parse(dados.get(i)));
+
+						camposTabela += "#" + dia + "#";
+						if (i != dados.size() - 1) {
+							camposTabela += ",";
+						}
+					} catch (ParseException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+
+				} else {
+					if (campos.get(i).getType().toString().replaceAll("class java.lang.", "").toUpperCase()
+							.equals("STRING")) {
+						camposTabela += "'";
+					}
+					if (dados.get(i).equals("0.0")) {
+						camposTabela += "0";
+					} else {
+						camposTabela += dados.get(i);
+					}
+					if (campos.get(i).getType().toString().replaceAll("class java.lang.", "").toUpperCase()
+							.equals("STRING")) {
+						camposTabela += "'";
+					}
+					if (i != dados.size() - 1) {
+						camposTabela += ",";
+					}
+				}
+			}
+			
+			
+		}
+
+		insert = insert + camposTabela +" WHERE " + id + " = " + valor;
+		return insert;
+	}
 
 }
