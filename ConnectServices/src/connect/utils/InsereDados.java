@@ -75,12 +75,11 @@ public class InsereDados {
 		String dadosTabela = "";
 		insert = "UPDATE " + tabela + " SET ";
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.US);
-		insert = insert + tabela;
 		for (int i = 0; i < campos.size(); i++) {
 			camposTabela += campos.get(i).getName();
 
-			if (i != campos.size() - 1) {
-				camposTabela += "";
+			if (i != campos.size()) {
+				camposTabela += " = ";
 				if (campos.get(i).getType().toString().replaceAll("class java.util.", "").toUpperCase().equals("DATE")) {
 
 					// String stringData = "" + dados.get(i).substring(8, 10) + "/" +
@@ -108,7 +107,7 @@ public class InsereDados {
 					if (dados.get(i).equals("0.0")) {
 						camposTabela += "0";
 					} else {
-						camposTabela += dados.get(i);
+						camposTabela += dados.get(i).toString().replaceAll("'", "");
 					}
 					if (campos.get(i).getType().toString().replaceAll("class java.lang.", "").toUpperCase()
 							.equals("STRING")) {

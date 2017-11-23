@@ -23,14 +23,15 @@ import connect.Classes.ControleCodigo;
 import connect.utils.FabricaConexao;
 import connect.utils.InsereDados;
 import connect.utils.InsereField;
+@Path("recebeCidadeAtualizada")
+public class RecebeCidadeAtualizada {
+	
 
-@Path("recebeCidade")
-public class RecebeCidade {
 	
 	@POST
 	@Consumes(MediaType.TEXT_PLAIN)
 	@Produces(MediaType.TEXT_PLAIN)
-	public String recebeCidade(String cidade) throws ClassNotFoundException, SQLException, ParseException {
+	public String recebeCidadeAtualizada(String cidade) throws ClassNotFoundException, SQLException, ParseException {
 		Gson gson = new GsonBuilder().setDateFormat("dd/MM/yyyy").create();
 		InsereField insereField = new InsereField();
 		Cidade cidades[] = gson.fromJson(cidade, Cidade[].class);
@@ -63,7 +64,8 @@ public class RecebeCidade {
 			List<String> dados = insereField.retornaArrayDados(cidade2, campos);
 
 			InsereDados insereDados = new InsereDados();
-			String insert = insereDados.retornaInsert(campos, dados, "Cidade");
+			String insert = insereDados.retornaUpdate(campos, dados, "Cidade", "[cód cidade]", cidade2.getCodcidade().toString());
+			System.out.println(insert);
 			insert = insert.replaceAll("codcidade", "[Cód Cidade]");
 			insert = insert.replaceAll("nomecidade", "[Nome Cidade]");
 			// System.out.println(insert);
@@ -87,6 +89,6 @@ public class RecebeCidade {
 			return "";
 		}
 	}
-	
-	
+
+
 }
