@@ -23,7 +23,7 @@ import connect.utils.FabricaConexao;
 import connect.utils.InsereDados;
 import connect.utils.InsereField;
 
-@Path("recebeCliente")
+@Path("atualizaCliente")
 public class AtualizaCliente {
 	
 	@POST

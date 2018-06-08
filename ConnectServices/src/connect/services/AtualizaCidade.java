@@ -24,7 +24,7 @@ import connect.utils.FabricaConexao;
 import connect.utils.InsereDados;
 import connect.utils.InsereField;
 
-@Path("recebeCidadeAtualizada")
+@Path("atulizaCidade")
 public class AtualizaCidade {
 
 	@POST
